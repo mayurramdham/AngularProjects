@@ -1,0 +1,85 @@
+<p>post-api works!</p>
+
+<div class="m-2 p-4 border-rounded bg-warning">
+  <span style="background-color: transparent">We are in Reactive Forms</span>
+  <p style="background-color: transparent">Reactive-form works!</p>
+</div>
+<div>
+  <button
+    type="button"
+    class="btn btn-primary btn-lg"
+    [routerLink]="['/get-api']"
+  >
+    Get Api
+  </button>
+</div>
+
+<form class="row g-3" [formGroup]="studentForm">
+  <div class="col-md-6">
+    <label for="inputEmail4" class="form-label">Name</label>
+    <input
+      type="email"
+      class="form-control"
+      formControlName="Name"
+      name="Name"
+      id="inputEmail4"
+    />
+    <div class="text-danger">
+      @if (studentForm.controls['Name'].touched &&
+      studentForm.controls['Name'].errors?.['required']) {
+      <span>This is required</span>
+      } @else if (studentForm.controls['Name'].touched &&
+      studentForm.controls['Name'].errors?.['minlength']) {
+      <span>Minimum Length is 4</span>
+      }
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="inputPassword4" class="form-label">Email</label>
+    <input
+      name="Email"
+      formControlName="Email"
+      required
+      minlength="4"
+      class="form-control"
+      id="inputPassword4"
+    />
+    <div class="text-danger">
+      <span
+        *ngIf="(studentForm.controls['Email'].touched
+      && studentForm.controls['Email'].errors?.['required']
+    )"
+        >This is required</span
+      >
+      <span
+        *ngIf="(studentForm.controls['Email'].touched && studentForm.controls['Email'].errors?.['Email'])"
+        >Minimum Length is 4</span
+      >
+    </div>
+  </div>
+  <div class="col-md-6">
+    <label for="inputAddress" class="form-label">DateOfBirth</label>
+    <input
+      type="text"
+      name="DateOfBirth"
+      formControlName="DateOfBirth"
+      class="form-control"
+      id="inputAddress"
+      placeholder="xyz@gmail.com"
+    />
+  </div>
+
+  <div class="col-12">
+    <button
+      type="submit"
+      class="btn btn-primary bg-primary"
+      (click)="onSubmit()"
+    >
+      Submit
+    </button>
+    <button type="reset" class="btn btn-primary bg-danger" (click)="onReset()">
+      Reset Form
+    </button>
+  </div>
+</form>
+<div></div>

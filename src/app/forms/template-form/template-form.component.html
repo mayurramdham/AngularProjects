@@ -1,0 +1,67 @@
+<div class="m-2 p-4 border-rounded bg-warning">
+    <span style="background-color: transparent;">We are in Template Forms</span>
+    <p style="background-color: transparent;">template-form works!</p>
+</div>
+
+<form #myForm="ngForm"  class="row g-3">
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">FirstName</label>
+      <input type="email" class="form-control" #firstName="ngModel" required minlength="3" name="FirstName" [(ngModel)]="StudentObj.FirstName" id="inputEmail4">
+      <div class="text-danger">
+        <!-- @if ((firstName.touched || firstName.dirty)&& firstName.errors?.['required']) {
+            <span>This is required</span>
+        } -->
+        <span *ngIf="firstName.touched && firstName.errors?.['required']" >This is required</span>
+        <span *ngIf="firstName.errors?.['minlength']">Name Greater than 3 letters</span>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="inputPassword4" class="form-label">LastName</label>
+      <input type="password" name="LastName" required minlength="4" #lastName="ngModel" class="form-control" [(ngModel)]="StudentObj.LastName" id="inputPassword4">
+      <div class="text-danger">
+        <span *ngIf="lastName.touched &&  lastName.errors?.['required']">This field is required</span>
+        <span *ngIf="lastName.errors?.['minlength']">LastName must be greater than 3 letters</span>
+      </div>
+    </div>
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">UserName</label>
+      <input type="text" name="UserName" class="form-control" id="inputAddress" [(ngModel)]="StudentObj.UserName" placeholder="1234 Main St">
+    </div>
+    <div class="col-12">
+      <label for="inputAddress2" class="form-label">City</label>
+      <input type="text" class="form-control" name="City" id="inputAddress2" [(ngModel)]="StudentObj.City" placeholder="Apartment, studio, or floor">
+    </div>
+    
+    <div class="col-md-4">  
+      <label for="inputState" class="form-label">State</label>
+      <select id="inputState" class="form-select" name="State" [(ngModel)]="StudentObj.State">
+        
+        <option>Maharashtra</option>
+        <option>Gujarat</option>
+        <option>Tamilnadu</option>
+        <option>Rajsthan</option>
+      </select>
+    </div>
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Zipcode</label>
+      <input  class="form-control" #zipCode="ngModel" maxlength="6" name="Zipcode" [(ngModel)]="StudentObj.Zipcode" id="inputZip">
+      <div class="text-danger">
+        <span *ngIf="zipCode.errors?.['maxlength']">Zipcode  contains number only</span>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="isAcceptTerms" [(ngModel)]="StudentObj.isAcceptTerms" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+         Agree Terms & Condition
+        </label>
+      </div>
+    </div>
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary bg-primary" [disabled]="myForm.invalid" (click)="onsubmitData()">Submit</button>
+      <button type="reset" class="btn btn-primary bg-danger" (click)="resetForm()" >Reset Form</button>
+    </div>
+  </form>
+  <div>
+    <span>{{formValue|json}}</span>
+  </div>

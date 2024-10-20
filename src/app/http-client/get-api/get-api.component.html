@@ -1,0 +1,33 @@
+<p>get-api works!</p>
+<div class="row">
+  <div class="col-2 m-3 p-3 bg-success border-5">
+    <button class="btn btn-success" (click)="getAllUser()">Get Api</button>
+  </div>
+  <div class="col-3">
+    <select>
+      @for (item of userList; track $index) {
+      <option>{{ item.name }}</option>
+      } //how to iterate the data into the table
+    </select>
+  </div>
+</div>
+<div>
+  <table class="table table-bordered border-2">
+    <thead>
+      <tr>
+        <th scope="col">id</th>
+        <th scope="col">name</th>
+        <th scope="col">email</th>
+        <th scope="col">DateOfBirth</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userList; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.dateOfBirth }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

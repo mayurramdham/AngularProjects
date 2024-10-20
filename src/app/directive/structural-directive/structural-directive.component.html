@@ -1,0 +1,83 @@
+<div class="mt-2 p-2 bg-secondary text-white rounded">
+<h1>Structural directive</h1>
+<p>*ngIf *ngFor</p>
+<button type="button" class="btn btn-primary" [routerLink]="['/attribute-directive']">GOTO Attribute</button>
+</div>
+<div class="row pt-3">
+<div class="col-3">
+    <div *ngIf="isDiv1Visible" class="bg-danger p-3 text-center">
+        <h4>Div 1</h4>
+    </div>
+</div>
+<div *ngIf="isDiv2Visible" class="col-3">
+    <div class="bg-primary p-3 text-center ">
+        <h4>Div 2</h4>
+    </div>
+</div>
+<div class="col-3">
+    <div *ngIf="num1==num2" class="bg-secondary p-3 text-center">
+        <h4>Div 3</h4>
+    </div>
+</div>
+<div  class="col-3">
+    <div *ngIf="studentNames" class="bg-primary p-3 text-center">
+        <h4>Div 4</h4>
+    </div>
+</div>
+</div>
+<div class="row p-3">
+    <div class="col-3 text-center" >
+        <button class="btn btn-primary" (click)="showDiv1()">Show</button>
+        <button class="btn btn-danger" (click)="hideDiv1()">Hide</button>
+    </div>
+    <div class="col-3 text-center" >
+        <button class="btn btn-success" (click)="toggleDiv2()">Toggle</button>
+    </div>
+    <div class="col-3" >
+        <div class="display:flex; align-items:center">
+            <input type="text" [(ngModel)]="num1" placeholder="Num-1" class="width-50" />
+            <input type="text" [(ngModel)]="num2" placeholder="Num-2" class="width-50" />
+        </div>
+    </div>
+    <div class="col-3" >
+        <div class="display:flex;  align-items:center">
+            <input [(ngModel)]="ischecked"  type="checkbox"  class="width-50 " />
+            <select [(ngModel)]="selectedValue">
+                <option *ngFor="let name of studentNames" [value]=name.stdId>{{name.Name}}</option>
+                                  
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-4">
+        <ul>
+            <table class="table table-bordered">
+                <thead class="table-info">
+                    <tr >
+                        <th>SrNo</th>
+                        <th>Name</th>
+                        <th>City</th>
+                        <th>Isactive</th>
+                    </tr>
+                    
+                </thead>
+                <tbody>
+                    <tr *ngFor="let name of studentNames; let SrNo=index">
+                        <td>{{SrNo+1}}</td>
+                        <td>{{name.Name}}</td>
+                        <td>{{name.City}}</td>
+                        <td>
+                            <span *ngIf="name.isActive">Active</span>
+                            <span *ngIf="!name.isActive">De-Active</span>
+                        </td>
+                        </tr>
+                </tbody>
+                
+            </table>
+                
+        </ul>
+    </div>
+    
+   
